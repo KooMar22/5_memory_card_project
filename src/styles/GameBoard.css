@@ -1,0 +1,47 @@
+.game-board {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 400px;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(221, 160, 221);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.loading, .error {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(75, 75, 75);
+  margin: 50px 0;
+}
+
+.error {
+  color: rgb(200, 0, 0);
+}
+
+@media (orientation: portrait) {
+    .game-board {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .card-container {
+        gap: 5px;
+    }
+}

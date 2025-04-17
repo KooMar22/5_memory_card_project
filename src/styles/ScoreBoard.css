@@ -1,0 +1,34 @@
+.score-board {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-weight: bold;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.score-board p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.score {
+  color: rgb(65, 105, 225);
+}
+
+.high-score {
+  color: rgb(34, 139, 34);
+}
+
+@media (orientation: portrait) {
+    .score-board {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

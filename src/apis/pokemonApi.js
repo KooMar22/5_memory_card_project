@@ -1,6 +1,6 @@
 // Function to fetch specific Pokemon from ID
 
-const fetchPokemon = async function (id) {
+const fetchPokemon = async (id) => {
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const data = await response.json();
@@ -16,7 +16,7 @@ const fetchPokemon = async function (id) {
 }
 
 // Function to fetch multiple Pokemon (randomly from first 151)
-const fetchMultiplePokemon = async function (count) {
+const fetchMultiplePokemon = async (count) => {
     try {
         const pokemonList = [];
         const useIds = new Set();

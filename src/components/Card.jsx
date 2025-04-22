@@ -1,6 +1,6 @@
 import "../styles/Card.css";
 
-const Card = function ({ pokemon, handleCardClick }) {
+const Card = ({ pokemon, handleCardClick }) => {
     return (
         <div className="card" onClick={() => handleCardClick(pokemon.id)}>
             <img src={pokemon.image} alt={pokemon.name} />

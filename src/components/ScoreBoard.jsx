@@ -1,6 +1,6 @@
 import "../styles/ScoreBoard.css";
 
-const ScoreBoard = function ({ score, highScore }) {
+const ScoreBoard = ({ score, highScore }) => {
     return (
         <div className="score-board">
             <p>Current Score: <span className="score">{ score }</span></p>

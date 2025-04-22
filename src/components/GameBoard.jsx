@@ -99,8 +99,8 @@ const GameBoard = ({ setScore, setHighScore, highScore }) => {
   return (
     <div className="game-board">
       <div className="cards-container">
-        {pokemon.map((p) => (
-          <Card key={p.id} pokemon={p} handleCardClick={handleCardClick} />
+        {pokemon.map((monster) => (
+          <Card key={monster.id} pokemon={monster} handleCardClick={handleCardClick} />
         ))}
       </div>
     </div>

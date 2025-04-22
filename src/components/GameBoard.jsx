@@ -9,6 +9,7 @@ const GameBoard = ({ setScore, setHighScore, highScore }) => {
   const [clickedPokemon, setClickedPokemon] = useState(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   // Number of Pokemon cards in the game
   const POKEMON_COUNT = 12;
@@ -29,6 +30,18 @@ const GameBoard = ({ setScore, setHighScore, highScore }) => {
 
     loadPokemon();
   }, []);
+
+  const loadNewPokemon = async () => {
+    try {
+      setLoading(true);
+      const pokemonData = await fetchMultiplePokemon(POKEMON_COUNT);
+      setPokemon(shuffleArray(pokemonData));
+      setLoading(false);
+    } catch (error) {
+      setError(`Failed to load Pokemon. Please try again. ${error.message}`);
+      setLoading(false);
+    }
+  };
 
   // Handle card click
   const handleCardClick = useCallback(
@@ -59,14 +72,17 @@ const GameBoard = ({ setScore, setHighScore, highScore }) => {
 
       // Check if game is over
       if (IsGameOver(newClickedPokemon, POKEMON_COUNT)) {
-        // Reset the game after showing a success message
+        // Show success message
+        setShowSuccessMessage(true);
+
+        // Hide message and reset game after delay
         setTimeout(() => {
-          alert("Congratulations! You've completed the game!");
+          setShowSuccessMessage(false);
           setClickedPokemon(new Set());
           setScore(0);
           // Load new Pokemon for a fresh game
           loadNewPokemon();
-        }, 500);
+        }, 5000);
         return;
       }
 
@@ -75,18 +91,6 @@ const GameBoard = ({ setScore, setHighScore, highScore }) => {
     },
     [clickedPokemon, pokemon, setScore, setHighScore, highScore]
   );
-
-  const loadNewPokemon = async () => {
-    try {
-      setLoading(true);
-      const pokemonData = await fetchMultiplePokemon(POKEMON_COUNT);
-      setPokemon(shuffleArray(pokemonData));
-      setLoading(false);
-    } catch (error) {
-      setError(`Failed to load Pokemon. Please try again. ${error.message}`);
-      setLoading(false);
-    }
-  };
 
   if (loading) {
     return <div className="loading">Loading Pokemon...</div>;
@@ -98,9 +102,18 @@ const GameBoard = ({ setScore, setHighScore, highScore }) => {
 
   return (
     <div className="game-board">
+      {showSuccessMessage && (
+        <h3 className="success-message">
+          Congratulations! You have successfully finished the game!
+        </h3>
+      )}
       <div className="cards-container">
         {pokemon.map((monster) => (
-          <Card key={monster.id} pokemon={monster} handleCardClick={handleCardClick} />
+          <Card
+            key={monster.id}
+            pokemon={monster}
+            handleCardClick={handleCardClick}
+          />
         ))}
       </div>
     </div>

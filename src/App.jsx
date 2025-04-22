@@ -25,7 +25,7 @@ function App() {
     <div className="container">
       <h1>Pokemon Memory Game</h1>
       <p className="instructions">
-        Click on a Pokémon card, but don't click on the same one twice!
+        Click on a Pokémon card, but don't click on the same card twice!
       </p>
       <ScoreBoard score={score} highScore={highScore} />
       <GameBoard
